@@ -6,7 +6,9 @@
 """
 IMPORTS
 """
+from collections import namedtuple
 
+Complex = namedtuple("Complex", ['r','i'])
 """
 METADATA
 """
@@ -37,11 +39,11 @@ def addComplex(x, y):
         x (tuple): complex A
         y (tuple): complex B
     """    
-    return((x[0]+y[0], x[1]+y[1]))
+    return(Complex(x.r+y.r, x.i+y.i))
 
 def multiplyComplex(x, y):
     # add code here ...
-    return((x[0]*y[0]-x[1]*y[1],x[0]*y[1]+x[1]*y[0]))
+    return(Complex(x.r*y.r-x.i*y.i,x.r*y.i+x.i*y.r))
 
 def printComplex(x):
     """Print complex
@@ -49,14 +51,13 @@ def printComplex(x):
     Args:
         x (tuple): complex to print
     """    
-    print("{}+{}i".format(x[0],x[1]))
+    print("{}+{}i".format(x.r,x.i))
 
 def main():
-    # ex2 a)
-
     # define two complex numbers as tuples of size two
-    c1 = (5, 3)
-    c2 = (-2, 7)
+    c1 = Complex(5, 3)  # use order when not naming
+    c2 = Complex(i=7, r=-2)  # if items are names order is not relevant
+    print('c1 = ' + str(c1)) # named tuple looks nice when printed
 
     # Test add
     c3 = addComplex(c1, c2)
