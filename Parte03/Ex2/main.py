@@ -6,9 +6,7 @@
 """
 IMPORTS
 """
-from collections import namedtuple
 
-Complex = namedtuple("Complex", ['r','i'])
 """
 METADATA
 """
@@ -28,43 +26,41 @@ TODO
 """
 CLASS DEFINITIONS
 """
+class Complex:
+
+    def __init__(self, r, i):
+        self.r = r  # store real part in class instance
+        self.i = i  # store imaginary part in class instance
+
+    def add(self, y):
+        self.r = self.r + y.r
+        self.i = self.i + y.i
+
+    def multiply(self, y):
+        self.r = self.r*y.r-self.i*y.i
+        self.i = self.r*y.i+self.i*y.r
+
+    def __str__(self):
+        return("{}+{}i".format(self.r,self.i))
+
 
 """
 FUNCTIONS DEFINITIONS
 """
-def addComplex(x, y):
-    """Add complex number
-
-    Args:
-        x (tuple): complex A
-        y (tuple): complex B
-    """    
-    return(Complex(x.r+y.r, x.i+y.i))
-
-def multiplyComplex(x, y):
-    # add code here ...
-    return(Complex(x.r*y.r-x.i*y.i,x.r*y.i+x.i*y.r))
-
-def printComplex(x):
-    """Print complex
-
-    Args:
-        x (tuple): complex to print
-    """    
-    print("{}+{}i".format(x.r,x.i))
-
 def main():
-    # define two complex numbers as tuples of size two
+    # declare two instances of class two complex numbers as tuples of size two
     c1 = Complex(5, 3)  # use order when not naming
     c2 = Complex(i=7, r=-2)  # if items are names order is not relevant
-    print('c1 = ' + str(c1)) # named tuple looks nice when printed
 
     # Test add
-    c3 = addComplex(c1, c2)
-    printComplex(c3)
+    print(c1)  # uses the __str__ method in the class
+    c1.add(c2)
+    print(c1)  # uses the __str__ method in the class
 
     # test multiply
-    printComplex(multiplyComplex(c1, c2))
+    print(c2)  # uses the __str__ method in the class
+    c2.add(c1)
+    print(c2)  # uses the __str__ method in the class
 
 """
 MAIN
